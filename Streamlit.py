@@ -1,16 +1,24 @@
 import streamlit as st
 
-st.title("Streamlit Test")
+# 미리 설정한 암호
+correct_password = "mysecretpassword"
 
-input_user_name = st.text_input(label="User Name", value="default value")
-radio_gender = st.radio(label="Gender", options=["Male", "Female"])
-check_1 = st.checkbox(label="agree", value=False)
-memo = st.text_area(label="memo", value="")
 
-if st.button("Confirm"):
-    con = st.container()
-    con.caption("Result")
-    con.write(f"User Name is {str(input_user_name)}")
-    con.write(str(radio_gender))
-    con.write(f"agree : {check_1}")
-    con.write(f"memo : {str(memo)}")
+# Streamlit 애플리케이션 구성
+def main():
+    st.title("암호 보안 페이지")
+
+    # 비밀번호 입력 상자
+    password_input = st.text_input("암호를 입력하세요", type="password")
+
+    # 암호 확인 버튼
+    if st.button("접근 허용"):
+        if password_input == correct_password:
+            st.success("암호가 일치합니다! 접근이 허용됩니다.")
+            # 여기에 접근을 허용한 후의 동작을 추가할 수 있습니다.
+        else:
+            st.error("잘못된 암호입니다. 접근이 거부되었습니다.")
+
+
+if __name__ == "__main__":
+    main()
